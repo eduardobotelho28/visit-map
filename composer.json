@@ -1,0 +1,18 @@
+{
+    "name": "dudub/visit-map",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Eduardo Botelho",
+            "email": "126706543+eduardobotelho28@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "^2.0",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
