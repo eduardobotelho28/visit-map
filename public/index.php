@@ -6,8 +6,7 @@ require dirname(__DIR__) . '/app/Core/bootstrap.php';
 use App\Core\Router;
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
-
-session_start();
+use App\Controllers\PlacesController;
 
 $router = new Router();
 
@@ -21,8 +20,8 @@ $router->post('/register', [$auth, 'register']);
 $router->get('/login',     [$auth, 'loginForm']);
 $router->post('/login',    [$auth, 'login']);
 
-$router->get('/places', function () {
-    print_r($_SESSION);
-});
+//Places
+$places = new PlacesController();
+$router->get('/places', [$places, 'myPlaces']);
 
 $router->dispatch($_SERVER['REQUEST_METHOD'] ?? 'GET', $_SERVER['REQUEST_URI'] ?? '/');
