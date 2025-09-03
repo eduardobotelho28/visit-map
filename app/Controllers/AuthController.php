@@ -8,39 +8,49 @@ class AuthController
     // Mostra o formulário de registro
     public function registerForm()
     {
-        echo 'aqui';
+        ob_start();
+        include dirname(__DIR__) . '/Views/auth/register.php';
+        return ob_get_clean();
     }
 
-    // Processa o registro
     public function register(): string
     {
         $name  = $_POST['name'] ?? '';
         $email = $_POST['email'] ?? '';
         $pass  = $_POST['password'] ?? '';
 
-        if (!$name || !$email || !$pass) {
-            return "<p>Preencha todos os campos. <a href='/public/register'>Voltar</a></p>";
-        }
+        $errors = [];
+
+        if (!$name)  $errors[] = 'Preencha o nome completo.';
+        if (!$email) $errors[] = 'Preencha o e-mail.';
+        if (!$pass)  $errors[] = 'Preencha a senha.';
 
         $collection = DB::db()->users;
 
-        // Verifica se já existe
-        $exists = $collection->findOne(['email' => $email]);
-        if ($exists) {
-            return "<p>Email já cadastrado. <a href='/public/register'>Voltar</a></p>";
+        if ($email && $collection->findOne(['email' => $email])) {
+            $errors[] = 'Email já cadastrado.';
         }
 
-        // Hash da senha
+        if (!empty($errors)) {
+            // repassa erros e valores para a view
+            $formData = ['name' => $name, 'email' => $email];
+            ob_start();
+            include dirname(__DIR__) . '/Views/auth/register.php';
+            return ob_get_clean();
+        }
+
         $hash = password_hash($pass, PASSWORD_BCRYPT);
 
-        // Inserir usuário
         $collection->insertOne([
             'name'       => $name,
             'email'      => $email,
             'password'   => $hash,
-            'created_at' => date('Y-m-d H:i:s') // data como string
+            'created_at' => date('Y-m-d H:i:s')
         ]);
 
-        return "<p>Usuário registrado com sucesso! <a href='/public/login'>Fazer login</a></p>";
+        // registro concluído, redirecionar para login
+        header('Location: /login');
+        exit;
     }
+
 }
