@@ -59,15 +59,49 @@
             border: 2px dashed #502B14;
             border-radius: 10px;
             padding: 20px;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: #fff8e5;
+        }
+        .place-item {
+            background: #fff;
+            border: 2px solid #502B14;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .place-details {
+            flex: 1;
+        }
+        .place-details strong {
+            color: #502B14;
+        }
+        .place-actions a {
+            margin-left: 10px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .place-actions .edit {
+            background: #2ECC71;
+            color: #fff;
+        }
+        .place-actions .edit:hover {
+            background: #27ae60;
+        }
+        .place-actions .delete {
+            background: #e74c3c;
+            color: #fff;
+        }
+        .place-actions .delete:hover {
+            background: #c0392b;
         }
         .empty {
             color: #6b3c1d;
             font-style: italic;
+            text-align: center;
         }
     </style>
 </head>
@@ -75,7 +109,7 @@
     <header>
         <div class="user">Olá, <?= htmlspecialchars($_SESSION['user']['name']) ?> 👋</div>
         <div class="actions">
-            <a href="/places/new">+ Novo Lugar</a>
+            <a href="/newPlace">+ Novo Lugar</a>
             <a href="/logout">Sair</a>
         </div>
     </header>
@@ -86,8 +120,20 @@
 
             <div class="places-list">
                 <?php if (!empty($places)): ?>
-                    <!-- Em breve: listagem bonita -->
-                    <div>Aqui ficará a lista de lugares.</div>
+                    <?php foreach ($places as $place): ?>
+                        <div class="place-item">
+                            <div class="place-details">
+                                <strong><?= htmlspecialchars($place['name']) ?></strong><br>
+                                📍 <?= htmlspecialchars($place['address']) ?><br>
+                                📅 <?= htmlspecialchars($place['date']) ?><br>
+                                ⭐ Avaliação: <?= htmlspecialchars($place['rating']) ?>/10
+                            </div>
+                            <div class="place-actions">
+                                <a href="/editPlace?id=<?= $place['_id'] ?>" class="edit">Editar</a>
+                                <a href="/deletePlace?id=<?= $place['_id'] ?>" class="delete" onclick="return confirm('Tem certeza que deseja excluir este lugar?');">Excluir</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 <?php else: ?>
                     <div class="empty">Você ainda não registrou nenhum lugar...</div>
                 <?php endif; ?>

@@ -23,5 +23,7 @@ $router->post('/login',    [$auth, 'login']);
 //Places
 $places = new PlacesController();
 $router->get('/places', [$places, 'myPlaces']);
+$router->get('/newPlace', [$places, 'newPlaceForm']);
+$router->post('/newPlace', [$places, 'newPlace']);
 
 $router->dispatch($_SERVER['REQUEST_METHOD'] ?? 'GET', $_SERVER['REQUEST_URI'] ?? '/');
