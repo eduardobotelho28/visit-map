@@ -13,14 +13,14 @@ class AuthController
         return ob_get_clean();
     }
 
-    public function loginForm(): string
+    public function loginForm()
     {
         ob_start();
         include dirname(__DIR__) . '/Views/auth/login.php';
         return ob_get_clean();
     }
 
-    public function register(): string
+    public function register()
     {
         $name  = $_POST['name'] ?? '';
         $email = $_POST['email'] ?? '';
@@ -60,7 +60,7 @@ class AuthController
         exit;
     }
 
-    public function login(): string
+    public function login()
     {
         $email = $_POST['email'] ?? '';
         $pass  = $_POST['password'] ?? '';

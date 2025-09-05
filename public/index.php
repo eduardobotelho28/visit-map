@@ -25,5 +25,7 @@ $places = new PlacesController();
 $router->get('/places', [$places, 'myPlaces']);
 $router->get('/newPlace', [$places, 'newPlaceForm']);
 $router->post('/newPlace', [$places, 'newPlace']);
+$router->get('/editPlace', [$places, 'editPlaceForm']);     
+$router->post('/editPlace', [$places, 'editPlace']);
 
 $router->dispatch($_SERVER['REQUEST_METHOD'] ?? 'GET', $_SERVER['REQUEST_URI'] ?? '/');
