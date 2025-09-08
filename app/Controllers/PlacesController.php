@@ -164,4 +164,39 @@ class PlacesController
         header('Location: /places');
         exit;
     }
+
+    public function deletePlace(): void
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            echo "ID inválido.";
+            return;
+        }
+
+        try {
+            $id = new ObjectId($_GET['id']);
+        } catch (\Exception $e) {
+            echo "ID inválido.";
+            return;
+        }
+
+        $userId = $_SESSION['user']['id'];
+
+        $result = DB::db()->places->deleteOne([
+            '_id'    => $id,
+            'user_id' => $userId 
+        ]);
+
+        if ($result->getDeletedCount() > 0) {
+            header('Location: /places');
+            exit;
+        } else {
+            echo "Erro ao excluir ou lugar não encontrado.";
+        }
+    }
+
 }

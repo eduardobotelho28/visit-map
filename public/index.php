@@ -15,10 +15,11 @@ $router->get('/', [new HomeController(), 'index']);
 
 // Registro
 $auth = new AuthController();
-$router->get('/register ', [$auth, 'registerForm']);
+$router->get('/register', [$auth, 'registerForm']);
 $router->post('/register', [$auth, 'register']);
 $router->get('/login',     [$auth, 'loginForm']);
 $router->post('/login',    [$auth, 'login']);
+$router->get('/logout',    [$auth, 'logout']);
 
 //Places
 $places = new PlacesController();
@@ -27,5 +28,6 @@ $router->get('/newPlace', [$places, 'newPlaceForm']);
 $router->post('/newPlace', [$places, 'newPlace']);
 $router->get('/editPlace', [$places, 'editPlaceForm']);     
 $router->post('/editPlace', [$places, 'editPlace']);
+$router->get('/deletePlace', [$places, 'deletePlace']);
 
 $router->dispatch($_SERVER['REQUEST_METHOD'] ?? 'GET', $_SERVER['REQUEST_URI'] ?? '/');

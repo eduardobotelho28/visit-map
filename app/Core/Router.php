@@ -64,14 +64,14 @@ class Router
         if (!$handler) {
             http_response_code(404);
             echo "<h1>404 Not Found</h1>";
-            echo "<p>Path tentado: " . htmlspecialchars($path) . "</p>";
-            echo "<pre>Rotas registradas:\n";
-            foreach ($this->routes as $m => $rs) {
-                foreach ($rs as $p => $_) {
-                    echo "  $m $p\n";
-                }
-            }
-            echo "</pre>";
+            // echo "<p>Path tentado: " . htmlspecialchars($path) . "</p>";
+            // echo "<pre>Rotas registradas:\n";
+            // foreach ($this->routes as $m => $rs) {
+            //     foreach ($rs as $p => $_) {
+            //         echo "  $m $p\n";
+            //     }
+            // }
+            // echo "</pre>";
             return;
         }
 
