@@ -86,7 +86,7 @@ Siga estes passos para configurar o projeto em seu ambiente local:
 
 ### 1. Clone o Repositório
 ```bash
-git clone <[URL_DO_REPOSITORIO](https://github.com/eduardobotelho28/visit-map)>
+git clone https://github.com/eduardobotelho28/visit-map
 cd visit-map
 ```
 
