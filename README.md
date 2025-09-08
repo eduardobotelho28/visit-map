@@ -115,23 +115,6 @@ Abra seu navegador e acesse: `http://localhost:8000`
 
 ---
 
-## 🏗️ Estrutura do Projeto
-
-O projeto segue uma arquitetura **MVC simplificada** para facilitar manutenção e desenvolvimento:
-
-```
-visit-map/
-├── public/
-│   └── index.php          # Definição das rotas
-├── src/
-│   ├── Controllers/       # Lógica de controle
-│   └── Views/            # Templates de interface
-├── composer.json
-└── .env                  # Configurações (opcional)
-```
-
----
-
 ## 🔮 Funcionalidades Futuras
 
 - 🗺️ **Integração com Google Maps** para visualização geográfica dos lugares
@@ -150,24 +133,3 @@ visit-map/
 | MongoDB | Latest | Banco de dados NoSQL |
 | Composer | Latest | Gerenciamento de dependências |
 
----
-
-## 🤝 Contribuição
-
-Contribuições são sempre bem-vindas! Sinta-se à vontade para:
-
-1. 🍴 Fazer fork do projeto
-2. 🌱 Criar uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. 💾 Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push para a branch (`git push origin feature/AmazingFeature`)
-5. 🔄 Abrir um Pull Request
-
----
-
-<div align="center">
-
-**Desenvolvido com ❤️ para organizadores de viagens**
-
-*Transforme suas memórias em um mapa digital!*
-
-</div>
